@@ -1,4 +1,4 @@
-# DRLND - Solution to Project1: Navigation
+# DRLND - Solution to Project 1: Banana Navigation
 Udacity Deep Reinforcement Learning Nano Degree Project 1 Solution
 
 This folder contains the solution to Project 1: Navigation, as part of the Udacity Deep Reinforcement Learning Nano Degree.
@@ -11,13 +11,15 @@ I drop the Windows 64-bit version of the Banana Navigation Unity Enviroment in f
 - Windows (32-bit): [click here](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P1/Banana/Banana_Windows_x86.zip)
 - Windows (64-bit): [click here](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P1/Banana/Banana_Windows_x86_64.zip)
 
-## First Attempt
+## First attempt
 As a first attempt, I simply copy the solution from the Deep Q-Network section. The following three files show this minimal effort
 - dqn_agent.py
 - model.py
 - Navigation.ipynb
 
-where I basically adopted the new enviroment state and action counts as well as API, and ran it as is. It is a success though. I got the following scores:
+where I basically adopted the new enviroment state and action counts as well as API, and ran it as is. It is a success though. The notebook _Navigation.ipynb_ has some more detailed descriptions on the model and agent, and trained parameters are saved in _checkpoint.pth_.
+
+I got the following scores:
 ```
 Episode 100	Average Score: 1.17
 Episode 200	Average Score: 4.36
@@ -33,5 +35,17 @@ Environment solved in 893 episodes!	Average Score: 16.00
 ```
 Score plot through episode count<br />
 ![](https://github.com/hyperZoro/DRLND_projects/blob/main/p1_navigation/pic/score.png)
-A trained agent in action<br />
+
+A trained agent in action, this one actually gets a score of **21**<br />
 ![](https://github.com/hyperZoro/DRLND_projects/blob/main/p1_navigation/pic/Animation1.gif)
+
+## Attempt with prioritised experience replay
+Based on the first attempt, I have tried to add the Prioritised Experience Replay feature. The following files are relevant.
+
+- dqn_agent_plus.py
+- model.py
+- Navigation_plus.ipynb
+
+It is not quite a success (yet), mainly due to unbearable speed (6 hours and only completed 100 episode). I suspect it is to do with some mis-use ot for-loops or the way how I update values in certain objects. The Notebook _Navigation_plus.ipynb_ has some more detailed write-ups. In particular, a PER section describe the intension of the modification and the problems and suspections.
+
+
