@@ -15,7 +15,7 @@ I drop the Windows 64-bit version of the Banana Navigation Unity Enviroment in f
 As a first attempt, I simply copy the solution from the Deep Q-Network section. The following three files show this minimal effort
 - dqn_agent.py
 - model.py
-- Navigation.ipynb
+- Report.ipynb
 
 where I basically adopted the new enviroment state and action counts as well as API, and ran it as is. It is a success though. The notebook _Navigation.ipynb_ has some more detailed descriptions on the model and agent, and trained parameters are saved in _checkpoint.pth_.
 
@@ -44,7 +44,7 @@ Based on the first attempt, I have tried to add the Prioritised Experience Repla
 
 - dqn_agent_plus.py
 - model.py
-- Navigation_plus.ipynb
+- Report_plus.ipynb
 
 It is not quite a success (yet), mainly due to unbearable speed (6 hours and only completed 100 episode). I suspect it is to do with some mis-use ot for-loops or the way how I update values in certain objects. The Notebook _Navigation_plus.ipynb_ has some more detailed write-ups. In particular, a PER section describe the intension of the modification and the problems and suspections.
 
