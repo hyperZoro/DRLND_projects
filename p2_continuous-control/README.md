@@ -38,32 +38,44 @@ _Report.ipynb_ contains the write-up of the report; while the trained parameters
 
 ### Running the code
 - Set up the Python enviroment according to "The Python enviroment".
-- Download the Banana Navigation Unity enviroment.
+- Download the Coninuous Control Unity enviroment.
 - Update the path pointing to the Unity enviroment executable file in the second code cell in _Report.ipynb_, where variable _env_ is set.
-- Run the code cells one by one from top to bottom in _Report.ipynb_. Note code cell 4 and 5 are optional, just to test the enviroment and agent are imported correctly.
-- Traing is done by code cell 6, average scores are printed per 100 episodes; the number of episodes required to reach the success criteria (score>=13) is also printed. The trained parameters are stored in _checkpoint.pth_.
+- Run the code cells one by one from top to bottom in _Report.ipynb_. 
+- Traing is done by code cell 5, average scores are printed per 5 episodes; the number of episodes required to reach the success criteria (score>=30) is also printed. The trained parameters are stored in _checkpoint_actor_ddpg.pth_ and _checkpoint_actor_ddpg.pth_.
 - Code cell 7 plots the trend of the score by the number of episode trained.
 - Code cell 8 demonstrate the trained agent in action.
 - The last code cell close the Unity enviroment.
 
 
 ### Results
-When I used a stricter success criteria of score>=16, I got the following progress report:
+I got the following training progress report:
 ```
-Episode 100	Average Score: 1.17
-Episode 200	Average Score: 4.36
-Episode 300	Average Score: 7.39
-Episode 400	Average Score: 9.16
-Episode 500	Average Score: 13.02
-Episode 600	Average Score: 14.30
-Episode 700	Average Score: 14.35
-Episode 800	Average Score: 15.06
-Episode 900	Average Score: 14.78
-Episode 993	Average Score: 16.00
-Environment solved in 893 episodes!	Average Score: 16.00
+Agents Mean Score in Episode 005: 1.17, 	Agents Mean Score over last 100 episodes: 0.59 (time per eps:55.4 secs)
+Agents Mean Score in Episode 010: 2.62, 	Agents Mean Score over last 100 episodes: 1.13 (time per eps:56.3 secs)
+Agents Mean Score in Episode 015: 5.20, 	Agents Mean Score over last 100 episodes: 2.30 (time per eps:55.4 secs)
+Agents Mean Score in Episode 020: 8.58, 	Agents Mean Score over last 100 episodes: 3.47 (time per eps:56.1 secs)
+Agents Mean Score in Episode 025: 13.17, 	Agents Mean Score over last 100 episodes: 4.94 (time per eps:58.3 secs)
+Agents Mean Score in Episode 030: 19.58, 	Agents Mean Score over last 100 episodes: 7.00 (time per eps:57.6 secs)
+Agents Mean Score in Episode 035: 29.16, 	Agents Mean Score over last 100 episodes: 9.86 (time per eps:59.6 secs)
+Agents Mean Score in Episode 040: 32.64, 	Agents Mean Score over last 100 episodes: 12.53 (time per eps:60.7 secs)
+Agents Mean Score in Episode 045: 35.19, 	Agents Mean Score over last 100 episodes: 14.86 (time per eps:61.9 secs)
+Agents Mean Score in Episode 050: 36.58, 	Agents Mean Score over last 100 episodes: 16.90 (time per eps:63.9 secs)
+Agents Mean Score in Episode 055: 38.22, 	Agents Mean Score over last 100 episodes: 18.76 (time per eps:63.1 secs)
+Agents Mean Score in Episode 060: 38.27, 	Agents Mean Score over last 100 episodes: 20.35 (time per eps:63.4 secs)
+Agents Mean Score in Episode 065: 38.45, 	Agents Mean Score over last 100 episodes: 21.72 (time per eps:63.6 secs)
+Agents Mean Score in Episode 070: 38.57, 	Agents Mean Score over last 100 episodes: 22.91 (time per eps:63.0 secs)
+Agents Mean Score in Episode 075: 37.82, 	Agents Mean Score over last 100 episodes: 23.95 (time per eps:63.6 secs)
+Agents Mean Score in Episode 080: 38.41, 	Agents Mean Score over last 100 episodes: 24.85 (time per eps:63.1 secs)
+Agents Mean Score in Episode 085: 37.18, 	Agents Mean Score over last 100 episodes: 25.58 (time per eps:62.9 secs)
+Agents Mean Score in Episode 090: 38.04, 	Agents Mean Score over last 100 episodes: 26.24 (time per eps:63.5 secs)
+Agents Mean Score in Episode 095: 38.61, 	Agents Mean Score over last 100 episodes: 26.87 (time per eps:62.7 secs)
+Agents Mean Score in Episode 100: 37.41, 	Agents Mean Score over last 100 episodes: 27.42 (time per eps:63.0 secs)
+Agents Mean Score in Episode 105: 37.18, 	Agents Mean Score over last 100 episodes: 29.29 (time per eps:63.2 secs)
+
+Environment solved in 107 episodes!	Average Score: 30.02
 ```
 Score plot through episode count<br />
-![](https://github.com/hyperZoro/DRLND_projects/blob/main/p1_navigation/pic/score.png)
+![](https://github.com/hyperZoro/DRLND_projects/blob/main/p2_continuous-control/pic/score.png)
 
 A trained agent in action, this one actually gets a score of **21**<br />
-![](https://github.com/hyperZoro/DRLND_projects/blob/main/p1_navigation/pic/Animation1.gif)
+![](https://github.com/hyperZoro/DRLND_projects/blob/main/p2_continuous-control/pic/Animation1.gif)
