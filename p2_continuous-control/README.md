@@ -74,8 +74,8 @@ Agents Mean Score in Episode 105: 37.18, 	Agents Mean Score over last 100 episod
 
 Environment solved in 107 episodes!	Average Score: 30.02
 ```
-Score plot through episode count<br />
-![](https://github.com/hyperZoro/DRLND_projects/blob/main/p2_continuous-control/pic/score.png)
+Score plot through episode count. First plot is scores for all individual agents; second plot is for the averaged score per episode (blue) and per 100 consecutive episodes (red)<br />
+![](https://github.com/hyperZoro/DRLND_projects/blob/main/p2_continuous-control/pic/scores.png)
 
-A trained agent in action, this one actually gets a score of **21**<br />
-![](https://github.com/hyperZoro/DRLND_projects/blob/main/p2_continuous-control/pic/Animation1.gif)
+20 trained agents in action.<br />
+![](https://github.com/hyperZoro/DRLND_projects/blob/main/p2_continuous-control/pic/Animation.gif)
