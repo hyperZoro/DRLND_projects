@@ -4,8 +4,19 @@ Udacity Deep Reinforcement Learning Nano Degree Project 2 Solution
 This folder contains the solution to Project 2: Continuous Control, as part of the Udacity Deep Reinforcement Learning Nano Degree.
 
 [Project rubric](https://review.udacity.com/#!/rubrics/1890/view)
-## About the project
-The goal of the project is to train the agent(s) to control double jointed arm(s), to track the target locations.
+
+## Building the Python enviroment
+The enviroment is prepared as instructed by [this page](https://github.com/udacity/deep-reinforcement-learning#dependencies). The solution is developed in Windows 11.
+I got a list of Python package dependence from the Peer Chat Channel, which is recorded in _requirement.txt_. mujoco, as part of the OpenAI Gym dependence, failed to build. PyTorch v0.4 is replaced by 1.10.1, and intel-openmp v2020.0.133 is replaced by v2022.0.0, both due to availability from the default repo. 
+
+There are the choices of using an enviroment with 1 single agent or 20 agents. I opted for the latter and dropped the Windows 64-bit version Unity Enviroment in folder: _./Reacher_Windows_x86_64_20/_, which I got from below.
+- Windows (64-bit): [click here](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P2/Reacher/one_agent/Reacher_Windows_x86_64.zip)
+
+The _ipynb_ file has a path string pointing to the executable.
+
+
+## About the enviroment and the agent
+The goal of the project is to train the agent(s) to control double jointed arm(s), to track the target locations. 
 ### The reward dynamic and the goal of the agent
 Each double-jointed arm can move to target locations, A reward of +0.1 is provided for each step that the agent's hand is in the goal location. The goal is to maintain its positiion at the target location to maximise total reward.
 
@@ -16,15 +27,8 @@ The state of the enviroment is described discretely by 33 state values (a 1D-vec
 ### Termination of the episode
 The task is episodic, it is terminated at the maximum number of time step (1001), when the accumuated reward is counted as the final reward. 
 ### Success criteria
-The sucess criteria is achieving an average score of +30 over 100 consecutive episodes.
+The sucess criteria is achieving an average score of +30 over 100 consecutive episodes, across all the agents.
 
-## The Python enviroment
-The enviroment is prepared as instructed by [this page](https://github.com/udacity/deep-reinforcement-learning#dependencies). The solution is developed in Windows 11.
-I got a list of Python package dependence from the Peer Chat Channel, which is recorded in _requirement.txt_. mujoco, as part of the OpenAI Gym dependence, failed to build. PyTorch v0.4 is replaced by 1.10.1, and intel-openmp v2020.0.133 is replaced by v2022.0.0, both due to availability from the default repo. 
-I drop the Windows 64-bit version Unity Enviroment in folder: _./Reacher_Windows_x86_64_1/_, which I got from below.
-- Windows (64-bit): [click here](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P2/Reacher/one_agent/Reacher_Windows_x86_64.zip)
-
-The _ipynb_ file has a path string pointing to the executable.
 
 ## Deep Deterministic Policy Gradient (DDPG)
 The solution is based on the DDPG example codes provided in the ddpg folder of [this repo](https://github.com/udacity/deep-reinforcement-learning). There is a very nice description provided [here](https://spinningup.openai.com/en/latest/algorithms/ddpg.html).
@@ -34,7 +38,7 @@ The following files show the solution:
 - ddpg_model.py
 - Report.ipynb
 
-_Report.ipynb_ contains the write-up of the report; while the trained parameters are saved in _checkpoint_actor_ddpg.pth_ and checkpoint_critic_ddpg.
+_Report.ipynb_ contains the write-up of the report; while the trained parameters are saved in _checkpoint_actor_ddpg.pth_ and checkpoint_critic_ddpg. One can follow the steps below to run the code cells in _Report.ipynb_ to replicate what I did.
 
 ### Running the code
 - Set up the Python enviroment according to "The Python enviroment".
@@ -75,7 +79,7 @@ Agents Mean Score in Episode 105: 37.18, 	Agents Mean Score over last 100 episod
 Environment solved in 107 episodes!	Average Score: 30.02
 ```
 Score plot through episode count<br />
-![](https://github.com/hyperZoro/DRLND_projects/blob/main/p2_continuous-control/pic/score.png)
+![](https://github.com/hyperZoro/DRLND_projects/blob/main/p2_continuous-control/pic/scores.png)
 
-A trained agent in action, this one actually gets a score of **21**<br />
-![](https://github.com/hyperZoro/DRLND_projects/blob/main/p2_continuous-control/pic/Animation1.gif)
+A trained agent in action.<br />
+![](https://github.com/hyperZoro/DRLND_projects/blob/main/p2_continuous-control/pic/Animation.gif)
