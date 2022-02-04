@@ -9,12 +9,12 @@ import torch
 import torch.nn.functional as F
 import torch.optim as optim
 
-BUFFER_SIZE = int(1e5)  # replay buffer size
-BATCH_SIZE = 500       # minibatch size
+BUFFER_SIZE = int(1e6)  # replay buffer size
+BATCH_SIZE = 128        # minibatch size
 GAMMA = 0.99            # discount factor
 TAU = 1e-3              # for soft update of target parameters
-LR_ACTOR = 1e-3         # learning rate of the actor 
-LR_CRITIC = 1e-3        # learning rate of the critic
+LR_ACTOR = 2e-4        # learning rate of the actor 
+LR_CRITIC = 3e-4        # learning rate of the critic
 WEIGHT_DECAY = 0        # L2 weight decay
 
 LEARN_FREQ = 1
@@ -66,6 +66,23 @@ class DDPGAgent():
     def reset(self):
         self.noise.reset()
 
+    def soft_update(self, tau):
+        self._soft_update(self.critic_local, self.critic_target, tau)
+        self._soft_update(self.actor_local, self.actor_target, tau)        
+
+
+    def _soft_update(self, local_model, target_model, tau):
+        """Soft update model parameters.
+        θ_target = τ*θ_local + (1 - τ)*θ_target
+
+        Params
+        ======
+            local_model: PyTorch model (weights will be copied from)
+            target_model: PyTorch model (weights will be copied to)
+            tau (float): interpolation parameter 
+        """
+        for target_param, local_param in zip(target_model.parameters(), local_model.parameters()):
+            target_param.data.copy_(tau*local_param.data + (1.0-tau)*target_param.data)
 
 class MADDPGAgent():
     """Interacts with and learns from the environment."""
@@ -85,7 +102,7 @@ class MADDPGAgent():
         self.seed = random.seed(random_seed)
 
         self.maddpg_agent = [DDPGAgent(state_size,action_size,random_seed), 
-                             DDPGAgent(state_size,action_size,random_seed+1)]
+                             DDPGAgent(state_size,action_size,random_seed)]
         self.num_agent = len(self.maddpg_agent)
 
         # Replay memory
@@ -132,18 +149,18 @@ class MADDPGAgent():
         actions_both = torch.hstack([actions[0], actions[1]])
         next_states_both = torch.hstack([next_states[0], next_states[1]])
 
-        target_next_actions_both = []
-        local_actions_pred_both = []
-        with torch.no_grad():
-            for i in range(self.num_agent):
-                ag = self.maddpg_agent[i]
-                target_next_actions_both.append(ag.actor_target(next_states[i]))
-                local_actions_pred_both.append(ag.actor_local(states[i]))
-            target_next_actions_both = torch.hstack([target_next_actions_both[0], target_next_actions_both[1]])
-            local_actions_pred_both = torch.hstack([local_actions_pred_both[0],local_actions_pred_both[1]])
-        #target_next_actions_both = torch.vstack((self.maddpg_agent[0].actor_target(next_states[:,:,0]), self.maddpg_agent[1].actor_target(next_states[:,:,1])))
 
         for i in range(self.num_agent):
+            target_next_actions_both = []
+            local_actions_pred_both = []
+            #with torch.no_grad():
+            for j in range(self.num_agent):
+                ag = self.maddpg_agent[j]
+                target_next_actions_both.append(ag.actor_target(next_states[j]))
+                local_actions_pred_both.append(ag.actor_local(states[j]))
+            target_next_actions_both = torch.hstack(target_next_actions_both)
+            local_actions_pred_both = torch.hstack(local_actions_pred_both)
+
             # ---------------------------- update critic ---------------------------- #
             # Get predicted next-state actions and Q values from target models
             ag = self.maddpg_agent[i]
@@ -152,10 +169,10 @@ class MADDPGAgent():
             Q_targets = rewards[i] + (gamma * Q_targets_next * (1 - dones[i]))
             # Compute critic loss
             Q_expected = ag.critic_local(states_both, actions_both)
-            critic_loss = F.mse_loss(Q_expected, Q_targets)
+            critic_loss = F.huber_loss(Q_expected, Q_targets)
             # Minimize the loss
             ag.critic_optimizer.zero_grad()
-            critic_loss.backward()
+            critic_loss.backward(retain_graph=True)
             torch.nn.utils.clip_grad_norm_(ag.critic_local.parameters(), 1)
             ag.critic_optimizer.step()
             # ---------------------------- update actor ---------------------------- #
@@ -163,25 +180,14 @@ class MADDPGAgent():
             actor_loss = -ag.critic_local(states_both, local_actions_pred_both).mean()
             # Minimize the loss
             ag.actor_optimizer.zero_grad()
-            actor_loss.backward()
+            actor_loss.backward(retain_graph=True)
             torch.nn.utils.clip_grad_norm_(ag.actor_local.parameters(), 1)
             ag.actor_optimizer.step()
             # ----------------------- update target networks ----------------------- #
-            self.soft_update(ag.critic_local, ag.critic_target, TAU)
-            self.soft_update(ag.actor_local, ag.actor_target, TAU)                     
+            ag.soft_update(TAU)
+             
 
-    def soft_update(self, local_model, target_model, tau):
-        """Soft update model parameters.
-        θ_target = τ*θ_local + (1 - τ)*θ_target
 
-        Params
-        ======
-            local_model: PyTorch model (weights will be copied from)
-            target_model: PyTorch model (weights will be copied to)
-            tau (float): interpolation parameter 
-        """
-        for target_param, local_param in zip(target_model.parameters(), local_model.parameters()):
-            target_param.data.copy_(tau*local_param.data + (1.0-tau)*target_param.data)
 
 class OUNoise:
     """Ornstein-Uhlenbeck process."""
