@@ -40,9 +40,9 @@ The agents must get an average score of +0.5 (over 100 consecutive episodes, aft
 
 
 ## Multi-Agent Deep Deterministic Policy Gradient (MADDPG)
-The solution is based on the MADDPG approach described in [thie paper](https://arxiv.org/abs/1706.02275).
+The solution is based on the MADDPG approach described in [thie paper](https://arxiv.org/abs/1706.02275).<br />
 ![](https://github.com/hyperZoro/DRLND_projects/blob/main/p3_collab-compet/pic/maddpg.png)
-And the following illustrates the algorithm.
+And the following illustrates the algorithm.<br />
 ![](https://github.com/hyperZoro/DRLND_projects/blob/main/p3_collab-compet/pic/maddpg_algorithm.png)
 
 The following files show the solution:
