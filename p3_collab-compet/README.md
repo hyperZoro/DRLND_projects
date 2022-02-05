@@ -63,7 +63,32 @@ _Report.ipynb_ contains the write-up of the report; while the trained parameters
 ### Results
 I got the following training progress report in one of the attempts:
 ```
+Episode 100:	Agents Mean Score over last 100 episodes: 0.00000 (time per eps:0.3 secs)
+Episode 200:	Agents Mean Score over last 100 episodes: 0.00000 (time per eps:0.3 secs)
+Episode 300:	Agents Mean Score over last 100 episodes: 0.00000 (time per eps:0.3 secs)
+Episode 400:	Agents Mean Score over last 100 episodes: 0.00100 (time per eps:0.3 secs)
+Episode 500:	Agents Mean Score over last 100 episodes: 0.00090 (time per eps:0.3 secs)
+Episode 600:	Agents Mean Score over last 100 episodes: 0.00000 (time per eps:0.3 secs)
+Episode 700:	Agents Mean Score over last 100 episodes: 0.00100 (time per eps:0.3 secs)
+Episode 800:	Agents Mean Score over last 100 episodes: 0.01090 (time per eps:0.3 secs)
+Episode 900:	Agents Mean Score over last 100 episodes: 0.01090 (time per eps:0.5 secs)
+Episode 1000:	Agents Mean Score over last 100 episodes: 0.00480 (time per eps:0.3 secs)
+Episode 1100:	Agents Mean Score over last 100 episodes: 0.02130 (time per eps:0.3 secs)
+Episode 1200:	Agents Mean Score over last 100 episodes: 0.01480 (time per eps:1.0 secs)
+Episode 1300:	Agents Mean Score over last 100 episodes: 0.01160 (time per eps:0.2 secs)
+Episode 1400:	Agents Mean Score over last 100 episodes: 0.03230 (time per eps:0.6 secs)
+Episode 1500:	Agents Mean Score over last 100 episodes: 0.02540 (time per eps:0.6 secs)
+Episode 1600:	Agents Mean Score over last 100 episodes: 0.04530 (time per eps:0.3 secs)
+Episode 1700:	Agents Mean Score over last 100 episodes: 0.05620 (time per eps:0.6 secs)
+Episode 1800:	Agents Mean Score over last 100 episodes: 0.08860 (time per eps:0.6 secs)
+Episode 1900:	Agents Mean Score over last 100 episodes: 0.10210 (time per eps:0.6 secs)
+Episode 2000:	Agents Mean Score over last 100 episodes: 0.12660 (time per eps:1.3 secs)
+Episode 2100:	Agents Mean Score over last 100 episodes: 0.13480 (time per eps:0.6 secs)
+Episode 2200:	Agents Mean Score over last 100 episodes: 0.10900 (time per eps:0.6 secs)
+Episode 2300:	Agents Mean Score over last 100 episodes: 0.17470 (time per eps:9.9 secs)
+Episode 2400:	Agents Mean Score over last 100 episodes: 0.35300 (time per eps:6.8 secs)
 
+Environment solved in 2450 episodes!	Average Score: 0.50210
 ```
 The training process is not very consistent - sometimes it reaches the success criteria with a lot less episodes.
 
