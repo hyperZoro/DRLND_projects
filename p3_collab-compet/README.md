@@ -54,19 +54,21 @@ _Report.ipynb_ contains the write-up of the report; while the trained parameters
 - Download the Coninuous Control Unity enviroment.
 - Update the path pointing to the Unity enviroment executable file in the second code cell in _Report.ipynb_, where variable _env_ is set.
 - Run the code cells one by one from top to bottom in _Report.ipynb_. 
-- Traing is done by code cell 5, average scores are printed per 5 episodes; the number of episodes required to reach the success criteria (score>=30) is also printed. The trained parameters are stored in _checkpoint_actor_ddpg.pth_ and _checkpoint_actor_ddpg.pth_.
-- Code cell 7 plots the trend of the score by the number of episode trained.
-- Code cell 8 demonstrate the trained agent in action.
+- Traing is done by code cell 5, average scores are printed per 100 episodes; the number of episodes required to reach the success criteria (score>=0.5) is also printed. The trained parameters are stored 4 _.pth_ files in the folder, for the Actors and Critics for each agent.
+- Code cell 6 plots the trend of the score by the number of episode trained.
+- Code cell 7 demonstrate the trained agent in action.
 - The last code cell close the Unity enviroment.
 
 
 ### Results
-I got the following training progress report:
+I got the following training progress report in one of the attempts:
 ```
 
 ```
+The training process is not very consistent - sometimes it reaches the success criteria with a lot less episodes.
+
 Score plot through episode count<br />
-![](https://github.com/hyperZoro/DRLND_projects/blob/main/p2_continuous-control/pic/scores.png)
+![](https://github.com/hyperZoro/DRLND_projects/blob/main/p3_collab-compet/pic/scores.png)
 
 A trained agent in action.<br />
-![](https://github.com/hyperZoro/DRLND_projects/blob/main/p2_continuous-control/pic/Animation.gif)
+![](https://github.com/hyperZoro/DRLND_projects/blob/main/p3_collab-compet/pic/Animation.gif)
