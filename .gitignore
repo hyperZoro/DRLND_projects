@@ -209,6 +209,5 @@ p3_collab-compet/.ipynb_checkpoints/Report-checkpoint.ipynb
 p3_collab-compet/.ipynb_checkpoints/Untitled-checkpoint.ipynb
 p3_collab-compet/__pycache__/ddpg_model.cpython-36.pyc
 p3_collab-compet/__pycache__/maddpg_agent.cpython-36.pyc
-p3_collab-compet/ddpg_model.py
 p3_collab-compet/Tennis_Windows_x86_64/train.py
 p3_collab-compet/unity-environment.log
