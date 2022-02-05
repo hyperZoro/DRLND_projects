@@ -44,10 +44,10 @@ The solution is based on the MADDPG approach described in [thie paper](https://a
 
 The following files show the solution:
 - ddpg_agent.py
-- ddpg_model.py
+- maddpg_model.py
 - Report.ipynb
 
-_Report.ipynb_ contains the write-up of the report; while the trained parameters are saved in _checkpoint_actor_ddpg.pth_ and checkpoint_critic_ddpg. One can follow the steps below to run the code cells in _Report.ipynb_ to replicate what I did.
+_Report.ipynb_ contains the write-up of the report; while the trained parameters are saved in 4 different _.pth_ files for the Actors and Critics for each agent respectively. One can follow the steps below to run the code cells in _Report.ipynb_ to replicate what I did.
 
 ### Running the code
 - Set up the Python enviroment according to "The Python enviroment".
